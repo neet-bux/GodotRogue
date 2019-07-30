@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Main.gd" type="Script" id=1]
+[ext_resource path="res://material.tres" type="Material" id=2]
+[ext_resource path="res://cp437_8x16_fixedsys.tres" type="TileSet" id=3]
+[ext_resource path="res://Terminal.gd" type="Script" id=4]
+
+[node name="Control" type="Control"]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 1 )
+
+[node name="TileMap" type="TileMap" parent="."]
+show_behind_parent = true
+material = ExtResource( 2 )
+tile_set = ExtResource( 3 )
+cell_size = Vector2( 8, 16 )
+format = 1
+script = ExtResource( 4 )
+

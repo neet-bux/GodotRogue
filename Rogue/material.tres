@@ -1,0 +1,42 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+uniform sampler2D attributes;
+
+void fragment()
+{
+	// 1. Get attribute to use as color for black/white pixel in tileset.
+	//    This code assumes the tilemap size is EXACTLY the screen resolution (before any shrink / viewport integer scaling)
+	//    and the attributes image is EXACTLY the tilemap size (i.e. how many cells wide and tall)
+	//    It WILL fail if you move the tilemap!
+	ivec4 attribute = ivec4(255.0 * texture(attributes, vec2(SCREEN_UV.x, 1.0 - SCREEN_UV.y)));
+	
+	// 2. Decode the attribute byte into a separate foreground and background color. (dont know why shifting without ivec3 works but ok)
+	vec3 foreground_rgb = vec3((attribute.rgb >> 4) & ivec3(15, 15, 15)) / 15.0;
+	vec3 background_rgb = vec3(attribute.rgb & ivec3(15, 15, 15)) / 15.0;
+	
+	// 3. Read blink
+	float toggle = float(mod(TIME * 2.0, 2.0) >= 1.0);
+	float blink = toggle * float(attribute.a & 1);
+	float invert = float(attribute.a & 2) / 2.0;
+	float inverse_blink = toggle * float(attribute.a & 4) / 4.0;
+
+	// 4. Read the monochrome (on/off - white/black) pixel from the tile
+	float pixel = texture(TEXTURE, UV).r;
+	
+	// 5. modify pixel with blink
+	pixel *= (1.0 - blink);
+	// 6. modify pixel with invert 
+	pixel = (1.0 - invert) * pixel + invert * (1.0 - pixel);
+	// 7. inverse blink
+	pixel = (1.0 - inverse_blink) * pixel + inverse_blink * (1.0 - pixel);
+	
+	// 5. Set the color (no alpha)
+	COLOR.rgb = foreground_rgb * pixel + background_rgb * (1.0 - pixel);
+	
+}"
+
+[resource]
+shader = SubResource( 1 )
+
