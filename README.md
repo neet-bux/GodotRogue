@@ -1,11 +1,9 @@
 # GodotRogue (title WIP)
 Roguelike made with Godot engine 3.1
+![alt text](https://i.imgur.com/YmE2Mkj.png)
 
 http://www.roguebasin.com/index.php?title=Main_Page
-
 https://godotengine.org/
-
-![alt text](https://i.imgur.com/YmE2Mkj.png)
 
 Algorithms TODO:
   - RectSampler (grid and free)
