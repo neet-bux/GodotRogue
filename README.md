@@ -6,7 +6,7 @@ http://www.roguebasin.com/index.php?title=Main_Page
 https://godotengine.org/
 
 Algorithms TODO:
-  - RectSampler 
+  - RectSampler (grid and free)
   - Cellular Automata http://www.roguebasin.com/index.php?title=Cellular_Automata_Method_for_Generating_Random_Cave-Like_Levels
   - FloodFill http://www.roguebasin.com/index.php?title=Roguelike_Dev_FAQ#How_do_you_make_sure_all_your_rooms_and_passages_are_reachable.3F
   - Restrictive Precise Shadowcasting http://www.roguebasin.com/index.php?title=Restrictive_Precise_Angle_Shadowcasting
