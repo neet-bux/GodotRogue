@@ -10,3 +10,4 @@ Algorithms TODO:
   - Restrictive Precise Shadowcasting
   - Djikstra maps
   - Bresenham (will truncating floats work too?)
+  - Energy based turn-system
