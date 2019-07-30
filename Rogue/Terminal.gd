@@ -7,6 +7,8 @@ var height : int
 var attribute_image : Image
 var attribute_texture : ImageTexture
 
+const DEFAULT_ATTRIBUTE : Color = Color8(0xd1, 0xe1, 0xd1, 0)
+
 func terminal_reset(width : int, height : int, tileset_file : String = "") -> void:
 	self.width =  width 
 	self.height = height
@@ -16,7 +18,7 @@ func terminal_reset(width : int, height : int, tileset_file : String = "") -> vo
 		attribute_texture = ImageTexture.new()
 		material.set_shader_param("attributes", attribute_texture)
 	attribute_image.create(width, height, false, Image.FORMAT_RGBA8)
-	attribute_image.fill(Color8(0xd1, 0xe1, 0xd1, 0))
+	attribute_image.fill(DEFAULT_ATTRIBUTE)
 	attribute_texture.create_from_image(attribute_image, 0)
 	for x in range(width):
 		for y in range(height):
@@ -37,7 +39,11 @@ func terminal_set_glyph(x : int, y : int, glyph : int) -> void:
 	pass
 
 func terminal_clear() -> void:
-	clear()
+	for x in range(width):
+		for y in range(height):
+			set_cell(x, y, 32)
+	attribute_image.fill(DEFAULT_ATTRIBUTE)
+	terminal_refresh_colors_and_attributes()
 	pass
 
 func terminal_set_foreground(x : int, y : int, color : Color) -> void:
@@ -76,9 +82,4 @@ func terminal_print(y : int, s : String) -> void:
 		for x in range(n):
 			terminal_set_glyph(x, y, c[x])
 		y += 1
-	pass
-
-func _init():
-	#terminal_reset(80, 25)
-	#terminal_refresh_colors_and_attributes()
 	pass
