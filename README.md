@@ -7,4 +7,4 @@ Algorithms TODO:
   - FloodFill
   - Restrictive Precise Shadowcasting
   - Djikstra maps
-  - Bresenham
+  - Bresenham (will truncating floats work too?)
