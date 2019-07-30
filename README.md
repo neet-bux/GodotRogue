@@ -13,3 +13,4 @@ Algorithms TODO:
   - Djikstra maps http://www.roguebasin.com/index.php?title=Dijkstra_Maps_Visualized
   - Bresenham (will truncating floats work too?) https://gist.github.com/bert/1085538 (plot_line)
   - Energy based turn-system http://www.roguebasin.com/index.php?title=Time_Systems#Energy_systems
+  - A* (?)https://en.wikipedia.org/wiki/A*_search_algorithm
